@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
@@ -6,9 +7,11 @@ from flask_debugtoolbar import DebugToolbarExtension
 from bluelog.blueprints.admin import admin_bp
 from bluelog.blueprints.auth import auth_bp
 from bluelog.blueprints.blog import blog_bp
+from bluelog.settings import config
 
 app = Flask('bluelog')
-app.config.from_pyfile('settings.py')
+config_name = os.getenv('FLASK_CONFIG', 'development')
+app.config.from_pyfile(config[config_name])
 
 bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
