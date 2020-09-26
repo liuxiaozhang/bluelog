@@ -7,11 +7,11 @@ from flask_debugtoolbar import DebugToolbarExtension
 from bluelog.blueprints.admin import admin_bp
 from bluelog.blueprints.auth import auth_bp
 from bluelog.blueprints.blog import blog_bp
-from bluelog.settings import config
+from bluelog.settings import configs
 
 app = Flask('bluelog')
 config_name = os.getenv('FLASK_CONFIG', 'development')
-app.config.from_pyfile(config[config_name])
+app.config.from_object(configs[config_name])
 
 bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)

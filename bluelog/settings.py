@@ -17,7 +17,7 @@ class TestingConfig(BaseConfig):
 class ProductionConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data.db')
 
-config = {
+configs = {
     'development': DevelopmentConfig,
     'testing': TestingConfig,
     'production': ProductionConfig
