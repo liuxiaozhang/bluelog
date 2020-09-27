@@ -1,28 +1,19 @@
-from flask import Blueprint, request, current_app
-from bluelog.extensions import db
-from bluelog.models import Post, Category, Comment
-
+from flask import render_template, Blueprint
 
 blog_bp = Blueprint('blog', __name__)
 
-class current_user:
-    is_authenticated = False
-
-
 @blog_bp.route('/')
 def index():
-    page = request.args.get('page', 1, type=int)
-    par_page = current_app.config['BLUELOG_POST_PER_PAGE']
-    pagination = 
-
-
-
-
+    return render_template('blog/index.html')
 
 @blog_bp.route('/about')
 def about():
-    return 'The about page'
+    return render_template('blog/about.html')
 
 @blog_bp.route('/category/<int:category_id>')
-def category(category_id):
-    return 'The category page'
+def show_category(category_id):
+    return render_template('blog/category.html')
+
+@blog_bp.route('/post/<int:post_id>', method=['GET', 'POST'])
+def show_post(post_id):
+    return render_template('blog/post.html')
