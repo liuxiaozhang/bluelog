@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from bluelog.blueprints.admin import admin_bp
 from bluelog.blueprints.auth import auth_bp
 from bluelog.blueprints.blog import blog_bp
-from bluelog.extensions import bootstrap, db, toolbar, migrate, moment
+from bluelog.extensions import bootstrap, db, toolbar, migrate, moment, login_manager
 from bluelog.models import Admin, Post, Category, Comment, Link
 from bluelog.settings import configs
 
@@ -38,6 +38,7 @@ def register_extensions(app):
     toolbar.init_app(app)
     migrate.init_app(app)
     moment.init_app(app)
+    login_manager.init_app(app)
 
 def register_blueprints(app):
     app.register_blueprint(blog_bp)

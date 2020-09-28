@@ -4,6 +4,7 @@ from flask import (
 from flask.helpers import url_for
 from flask.wrappers import Response
 from flask_sqlalchemy import FSADeprecationWarning, Pagination
+from flask_login import current_user
 
 from bluelog.extensions import db
 from bluelog.models import Post, Category, Comment
@@ -13,8 +14,8 @@ from bluelog.utils import redirect_back
 
 blog_bp = Blueprint('blog', __name__)
 
-class current_user:
-    is_authenticated = False
+# class current_user:
+#     is_authenticated = False
 
 @blog_bp.route('/')
 def index():
