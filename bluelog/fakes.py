@@ -50,7 +50,7 @@ def fake_comments(count=500):
             email = fake.email(),
             site = fake.url(),
             body = fake.sentence(),
-            timestamp = fake.date_time_this_year(),
+            timestramp = fake.date_time_this_year(),
             reviewed = True,
             post = Post.query.get(random.randint(1, Post.query.count()))
         )
@@ -63,7 +63,7 @@ def fake_comments(count=500):
             email = fake.email(),
             site = fake.url(),
             body = fake.sentence(),
-            timestamp = fake.date_time_this_year(),
+            timestramp = fake.date_time_this_year(),
             reviewed = False,
             post = Post.query.get(random.randint(1, Post.query.count()))
         )
@@ -74,7 +74,7 @@ def fake_comments(count=500):
             email = 'mima@example.com',
             site = 'example.com',
             body = fake.sentence(),
-            timestamp = fake.date_time_this_year(),
+            timestramp = fake.date_time_this_year(),
             from_admin = True,
             reviewed = True,
             post = Post.query.get(random.randint(1, Post.query.count()))
@@ -88,8 +88,9 @@ def fake_comments(count=500):
             email = fake.email(),
             site = fake.url(),
             body = fake.sentence(),
-            timestamp = fake.date_time_this_year(),
-            reviewed = Comment.query.get(random.randint(1, Comment.query.count())),
+            timestramp = fake.date_time_this_year(),
+            reviewed = True,
+            replied = Comment.query.get(random.randint(1, Comment.query.count())),
             post = Post.query.get(random.randint(1, Post.query.count()))
         )
         db.session.add(comment)
