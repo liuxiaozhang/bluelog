@@ -5,6 +5,7 @@ from flask_mail import Mail
 from flask_migrate import Migrate
 from flask_moment import Moment
 from flask_login import LoginManager
+from flask_wtf import CSRFProtect
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
@@ -13,6 +14,7 @@ mail = Mail()
 migrate = Migrate(db=db)
 moment = Moment()
 login_manager = LoginManager()
+csrf = CSRFProtect()
 
 @login_manager.user_loader
 def load_user(user_id):
