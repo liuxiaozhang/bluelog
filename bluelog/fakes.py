@@ -1,7 +1,6 @@
-from bluelog.blueprints.blog import category
 import random
 
-from faker import Faker 
+from faker import Faker
 from sqlalchemy.exc import IntegrityError
 
 from bluelog import db

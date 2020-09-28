@@ -14,21 +14,21 @@ def settings():
 def manage_post():
     return render_template('admin/manage_post.html')
 
-@admin_bp.route('/post/new', method=['GET', 'POST'])
+@admin_bp.route('/post/new', methods=['GET', 'POST'])
 def new_post():
     form = PostForm()
     return render_template('admin/new_post.html', form=form)
 
-@admin_bp.route('/post/<int:post_id>/edit', method=['GET', 'POST'])
+@admin_bp.route('/post/<int:post_id>/edit', methods=['GET', 'POST'])
 def edit_post(post_id):
     form = PostForm()
     return render_template('admin/edit_post.html', form=form)
 
-@admin_bp.route('/post/<int:post_id>/delete', method=['POST'])
+@admin_bp.route('/post/<int:post_id>/delete', methods=['POST'])
 def delete_post(post_id):
     return redirect_back()
 
-@admin_bp.route('/post/<int:post_id>/set-comment', method=['POST'])
+@admin_bp.route('/post/<int:post_id>/set-comment', methods=['POST'])
 def set_comment(post_id):
     return redirect_back()
 
@@ -36,11 +36,11 @@ def set_comment(post_id):
 def manage_comment():
     return render_template('admin/manage_comment.html')
 
-@admin_bp.route('/comment/<int:comment_id>/approve', method=['POST'])
+@admin_bp.route('/comment/<int:comment_id>/approve', methods=['POST'])
 def approve_comment(comment_id):
     return redirect_back()
 
-@admin_bp.route('/comment/<int:comment_id/delete>', method=['POST'])
+@admin_bp.route('/comment/<int:comment_id>/delete', methods=['POST'])
 def delete_comment(comment_id):
     return redirect_back()
 
@@ -48,17 +48,17 @@ def delete_comment(comment_id):
 def manage_category():
     return render_template('admin/manage_category.html')
 
-@admin_bp.route('/category/new', method=['GET', 'POST'])
+@admin_bp.route('/category/new', methods=['GET', 'POST'])
 def new_category():
     form = CategoryForm()
     return render_template('admin/new_category.html', form=form)
 
-@admin_bp.route('/category/<int:category_id>/edit', method=['GET', 'POST'])
+@admin_bp.route('/category/<int:category_id>/edit', methods=['GET', 'POST'])
 def edit_category(category_id):
     form = CategoryForm()
     return render_template('admin/edit_category.html', form=form)
 
-@admin_bp.route('/category/<int:category_id>/delete', method=['POST'])
+@admin_bp.route('/category/<int:category_id>/delete', methods=['POST'])
 def delete_category(category_id):
     return redirect(url_for('.manage_category'))
 
@@ -66,12 +66,12 @@ def delete_category(category_id):
 def manage_link():
     return render_template('admin/manage_link.html')
 
-@admin_bp.route('/link/new', method=['GET', 'POST'])
+@admin_bp.route('/link/new', methods=['GET', 'POST'])
 def new_link():
     form = LinkForm()
     return render_template('admin/new_link.html', form=form)
 
-@admin_bp.route('/link/<int:link_id>/edit', method=['GET', 'POST'])
+@admin_bp.route('/link/<int:link_id>/edit', methods=['GET', 'POST'])
 def edit_link(link_id):
     form = LinkForm()
     return render_template('admin/edit_link.html', form=form)
