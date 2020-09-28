@@ -103,8 +103,6 @@ def reply_comment(comment_id):
 def change_theme(theme_name):
     if theme_name not in current_app.config['BLUELOG_THEMES'].keys():
         abort(404)
-    
-    print(redirect_back())
     response = make_response(redirect_back())
     response.set_cookie('theme', theme_name, max_age=30 * 24 * 60 * 60)
     return response

@@ -16,6 +16,7 @@ def fake_admin():
         name = 'Mima Kirigoe',
         about = 'Um, 1, Mima Kirigoe, had a fun time as a member of CHAM...'
     )
+    admin.set_password('hellofalsk')
     db.session.add(admin)
     db.session.commit()
 
