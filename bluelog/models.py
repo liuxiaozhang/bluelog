@@ -41,7 +41,7 @@ class Comment(db.Model):
     body = db.Column(db.Text)
     from_admin = db.Column(db.Boolean, default=False)
     reviewed = db.Column(db.Boolean, default=False)
-    timestramp = db.Column(db.DateTime, default=datetime.utcnow, index=True)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow, index=True)
 
     replied_id = db.Column(db.Integer, db.ForeignKey('comment.id'))
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))

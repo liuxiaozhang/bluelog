@@ -1,6 +1,3 @@
-from email.policy import default
-from sqlalchemy import exc
-
 from urllib.parse import urlparse, urljoin
 from flask import request, redirect, url_for
 
@@ -10,6 +7,8 @@ def is_safe_url(target):
     return test_url.scheme in ('http', 'https') and ref_url.netloc == test_url.netloc
 
 def redirect_back(default='blog.index', **kwargs):
+    print(default)
+    print(**kwargs)
     for target in request.args.get('next'), request.referrer:
         if not target:
             continue

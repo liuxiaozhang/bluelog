@@ -34,7 +34,8 @@
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         {% for theme_name, display_name in config.BLUELOG_THEMES.items() %}
-        <a class="dropdown-item" href="{{ url_for('blog.change_theme', theme_name=theme_name, next=request.full_path) }}">
+        <a class="dropdown-item" 
+           href="{{ url_for('blog.change_theme', theme_name=theme_name, next=request.full_path) }}">
             {{ display_name }}
         </a>
         {% endfor %}

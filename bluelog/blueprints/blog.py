@@ -19,7 +19,6 @@ class current_user:
 @blog_bp.route('/')
 def index():
     page = request.args.get('page', 1, type=int)
-    print(page)
     per_page = current_app.config['BLUELOG_POST_PER_PAGE']
     pagination = Post.query.order_by(Post.timestamp.desc()).paginate(page, per_page=per_page)
     posts = pagination.items
@@ -43,10 +42,10 @@ def show_post(post_id):
     post = Post.query.get_or_404(post_id)
     page = request.args.get('page', 1, type=int)
     per_page = current_app.config['BLUELOG_COMMENT_PER_PAGE']
-    pagination = Comment.query.with_parent(post).filter_by(reviewed=True).order_by(Comment.timestramp.asc()).paginate(page, per_page)
+    pagination = Comment.query.with_parent(post).filter_by(reviewed=True).order_by(Comment.timestamp.asc()).paginate(page, per_page)
     comments = pagination.items
 
-    if current_app.is_authenticated:
+    if current_user.is_authenticated:
         form = AdminCommentForm()
         form.author.data = current_app.name
         form.email.data = current_app.config['BLUELOG_EMAIL']
@@ -104,6 +103,8 @@ def reply_comment(comment_id):
 def change_theme(theme_name):
     if theme_name not in current_app.config['BLUELOG_THEMES'].keys():
         abort(404)
+    
+    print(redirect_back())
     response = make_response(redirect_back())
     response.set_cookie('theme', theme_name, max_age=30 * 24 * 60 * 60)
     return response

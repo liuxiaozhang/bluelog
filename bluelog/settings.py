@@ -17,6 +17,9 @@ class BaseConfig(object):
     BLUELOG_POST_PER_PAGE = 10
     BLUELOG_MANAGE_POST_PER_PAGE = 15
     BLUELOG_COMMENT_PER_PAGE = 15
+
+    DEBUG_TB_INTERCEPT_REDIRECTS = False
+
     # ('theme name', 'display name')
     BLUELOG_THEMES = {'perfect_blue': 'Perfect Blue', 'black_swan': 'Black Swan'}
 
