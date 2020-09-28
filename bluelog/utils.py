@@ -1,11 +1,7 @@
 from email.policy import default
 from sqlalchemy import exc
 
-
-try:
-    from urllib.parse import urlparse, urljoin
-except ImportError:
-    from urlparse import urlparse, urljoin
+from urllib.parse import urlparse, urljoin
 from flask import request, redirect, url_for
 
 def is_safe_url(target):
