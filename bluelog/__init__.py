@@ -2,6 +2,7 @@ import os, click
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import current_user
 
 from bluelog.blueprints.admin import admin_bp
 from bluelog.blueprints.auth import auth_bp
@@ -49,7 +50,7 @@ def register_blueprints(app):
 def register_shell_context(app):
     @app.shell_context_processor
     def make_shell_context():
-        return dict(db=db)
+        return dict(db=db, Admin=Admin, Post=Post, Category=Category, Comment=Comment)
 
 def register_template_context(app):
     @app.context_processor
@@ -57,7 +58,11 @@ def register_template_context(app):
         admin = Admin.query.first()
         categories = Category.query.order_by(Category.name).all()
         links = Link.query.order_by(Link.name).all()
-        return dict(admin=admin, categories=categories, links=links)
+        if current_user.is_authenticated:
+            unread_comments = Comment.query.filter_by(reviewed=False).count()
+        else:
+            unread_comments = None
+        return dict(admin=admin, categories=categories, links=links, unread_comments=unread_comments)
 
 def register_errors(app):
     @app.errorhandler(400)
